@@ -11,10 +11,20 @@
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as ContactImport } from './routes/contact'
 import { Route as AboutImport } from './routes/about'
 import { Route as IndexImport } from './routes/index'
+import { Route as HistoryIndexImport } from './routes/history/index'
+import { Route as HistoryOurPhilosophyImport } from './routes/history/our-philosophy'
+import { Route as HistoryEarlyYearsImport } from './routes/history/early-years'
 
 // Create/Update Routes
+
+const ContactRoute = ContactImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AboutRoute = AboutImport.update({
   id: '/about',
@@ -25,6 +35,24 @@ const AboutRoute = AboutImport.update({
 const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryIndexRoute = HistoryIndexImport.update({
+  id: '/history/',
+  path: '/history/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryOurPhilosophyRoute = HistoryOurPhilosophyImport.update({
+  id: '/history/our-philosophy',
+  path: '/history/our-philosophy',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const HistoryEarlyYearsRoute = HistoryEarlyYearsImport.update({
+  id: '/history/early-years',
+  path: '/history/early-years',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -46,6 +74,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/early-years': {
+      id: '/history/early-years'
+      path: '/history/early-years'
+      fullPath: '/history/early-years'
+      preLoaderRoute: typeof HistoryEarlyYearsImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/our-philosophy': {
+      id: '/history/our-philosophy'
+      path: '/history/our-philosophy'
+      fullPath: '/history/our-philosophy'
+      preLoaderRoute: typeof HistoryOurPhilosophyImport
+      parentRoute: typeof rootRoute
+    }
+    '/history/': {
+      id: '/history/'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -54,36 +110,75 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/history/early-years': typeof HistoryEarlyYearsRoute
+  '/history/our-philosophy': typeof HistoryOurPhilosophyRoute
+  '/history': typeof HistoryIndexRoute
 }
 
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/history/early-years': typeof HistoryEarlyYearsRoute
+  '/history/our-philosophy': typeof HistoryOurPhilosophyRoute
+  '/history': typeof HistoryIndexRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/contact': typeof ContactRoute
+  '/history/early-years': typeof HistoryEarlyYearsRoute
+  '/history/our-philosophy': typeof HistoryOurPhilosophyRoute
+  '/history/': typeof HistoryIndexRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/history/early-years'
+    | '/history/our-philosophy'
+    | '/history'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/history/early-years'
+    | '/history/our-philosophy'
+    | '/history'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/contact'
+    | '/history/early-years'
+    | '/history/our-philosophy'
+    | '/history/'
   fileRoutesById: FileRoutesById
 }
 
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  ContactRoute: typeof ContactRoute
+  HistoryEarlyYearsRoute: typeof HistoryEarlyYearsRoute
+  HistoryOurPhilosophyRoute: typeof HistoryOurPhilosophyRoute
+  HistoryIndexRoute: typeof HistoryIndexRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  ContactRoute: ContactRoute,
+  HistoryEarlyYearsRoute: HistoryEarlyYearsRoute,
+  HistoryOurPhilosophyRoute: HistoryOurPhilosophyRoute,
+  HistoryIndexRoute: HistoryIndexRoute,
 }
 
 export const routeTree = rootRoute
@@ -97,7 +192,11 @@ export const routeTree = rootRoute
       "filePath": "__root.tsx",
       "children": [
         "/",
-        "/about"
+        "/about",
+        "/contact",
+        "/history/early-years",
+        "/history/our-philosophy",
+        "/history/"
       ]
     },
     "/": {
@@ -105,6 +204,18 @@ export const routeTree = rootRoute
     },
     "/about": {
       "filePath": "about.tsx"
+    },
+    "/contact": {
+      "filePath": "contact.tsx"
+    },
+    "/history/early-years": {
+      "filePath": "history/early-years.tsx"
+    },
+    "/history/our-philosophy": {
+      "filePath": "history/our-philosophy.tsx"
+    },
+    "/history/": {
+      "filePath": "history/index.tsx"
     }
   }
 }
