@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FadeIn } from '../animations/FadeIn';
 import { FormInput } from '../form/FormInput';
-import { FormTextarea } from '../form/FormTextArea';
+import { FormTextarea } from '../form/FormTextarea';
 import { SubmitButton } from '../form/SubmitButton';
 
 export function ContactForm() {

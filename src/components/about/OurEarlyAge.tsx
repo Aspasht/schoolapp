@@ -1,4 +1,3 @@
-import React from "react";
 import { Home, School, Lightbulb } from "lucide-react";
 import ClassRoomImage from "@/assets/images/classroom-hd.jpeg";
 

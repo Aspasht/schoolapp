@@ -1,4 +1,3 @@
-import React from "react";
 import { Calendar, Award, Users } from "lucide-react";
 import SchoolFront from '@/assets/images/school-front-hd.jpeg';
 
